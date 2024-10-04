@@ -1,38 +1,79 @@
 <!DOCTYPE html>
-<html>
- <head> 
-    <title>Make a guess</title>
- </head>
- <body>
-    <h1>Guess the Color sowmya</h1>
-    <label for="secretColor">Guess the color:</label>
-    <input type="password" id="secretColor" value="Red"><br>
-    
-    <label for="userGuess">Enter a guess:</label>
-    <input type="text" id="userGuess"><br>
-    
-    <button onclick="processColor()">Check the color</button>
-    
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Color and Image Slideshow</title>
+    <style>
+        #imageContainer {
+            margin-top: 20px;
+        }
+        img {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Guess the color Sowmya </h1>
+
+    <form>
+        <label for="secretColor">Guess the color:</label>
+        <input type="password" id="secretColor" value="Red">
+        <br>
+        <label for="guessColor">Enter a guess:</label>
+        <input type="text" id="guessColor">
+        <br>
+        <button type="button" onclick="processColor()">Check the color</button>
+    </form>
+
+   
     <div id="result"></div>
 
+   
+    <div id="imageContainer">
+        <img id="plantImage" src="plant1.jpg" width="200" height="200" onclick="nextImage()">
+    </div>
+
     <script>
+        
         let attempts = 0;
         let wrong = 0;
 
         function processColor() {
             const secretColor = document.getElementById('secretColor').value;
-            const userGuess = document.getElementById('userGuess').value;
+            const guessColor = document.getElementById('guessColor').value;
 
-            if (userGuess !== secretColor) {
+            attempts++;
+            if (secretColor.toLowerCase() !== guessColor.toLowerCase()) {
                 wrong++;
                 alert("That was not it");
             } else {
-                alert("You got it");
+                alert("You got it!");
             }
-            attempts++;
+
             document.getElementById('result').innerHTML = `Attempts: ${attempts}, Wrong: ${wrong}`;
         }
+
+        // Part 4: Image Slideshow Logic
+        let showing = 1;
+
+        function nextImage() {
+            const image = document.getElementById('plantImage');
+            switch (showing) {
+                case 1:
+                    image.src = 'plant2.jpeg';
+                    showing++;
+                    break;
+                case 2:
+                    image.src = 'plant3.jpeg';
+                    showing++;
+                    break;
+                case 3:
+                    image.src = 'plant1.jpeg';
+                    showing = 1;
+                    break;
+            }
+        }
     </script>
-   
 </body>
-</html> 
+</html>
