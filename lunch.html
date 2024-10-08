@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>lunch</title>
+</head>
+<body>
+    <h1>Sowmya Medabalimi Orders a Lunch</h1>
+    <form id="lunchForm">
+        <label><input type="checkbox" id="drink" value="drink"> Drink</label><br>
+        <label><input type="checkbox" id="side" value="side"> Side</label><br>
+        <label><input type="checkbox" id="in" value="in"> Eat in</label><br>
+    </form>
+    <button onclick="startLunch()">Start a lunch order</button>
+    <div id="lunchResult"></div>
+    <hr>
+    <label for="propertyName">Enter property:</label>
+    <input type="text" id="propertyName" value="entree"><br><br>
+    <label for="propertyValue">Set it to:</label>
+    <input type="text" id="propertyValue"><br><br>
+    <button onclick="updateLunch()">Update the lunch</button>
+    <div id="updatedLunchResult"></div>
+    <script>
+        let my_lunch = {};
+
+        function startLunch() {
+            my_lunch = {};
+            my_lunch.drink = document.getElementById('drink').checked;
+            my_lunch.side = document.getElementById('side').checked;
+            my_lunch.in = document.getElementById('in').checked;
+            document.getElementById('lunchResult').innerHTML = JSON.stringify(my_lunch);
+        }
+
+        function updateLunch() {
+            // Get the property name and value
+            const propertyName = document.getElementById('propertyName').value;
+            const propertyValue = document.getElementById('propertyValue').value;
+
+            // Set the property in my_lunch
+            my_lunch[propertyName] = propertyValue;
+
+            // Display the updated my_lunch object
+            document.getElementById('updatedLunchResult').innerHTML = JSON.stringify(my_lunch);
+        }
+    </script>
+</body>
+</html> 
